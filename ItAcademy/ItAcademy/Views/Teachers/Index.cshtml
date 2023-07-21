@@ -1,0 +1,87 @@
+﻿@model List<Teachers>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-header" style="display:flex;justify-content:space-between">
+                <h3>
+                    Müəllimlər
+                </h3>
+                <div>
+                    <a asp-action="Create" class="btn btn-danger text-white rounded-pill" style="margin-right:10px">Create</a>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Şəkil
+                            </th>
+                            <th>
+                                Ad
+                            </th>
+                            <th>
+                                Mobil
+                            </th>
+                            <th>
+                                Vəzifə
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="py-1">
+                                    <img src="~/~/../../images/@item.Image" alt="image" />
+                                </td>
+                                <td>
+                                  @item.Name
+                                </td>
+                                <td>
+                                @item.PhoneNumber
+                                </td>
+                                <td>
+                                    @item.Courses.Name
+                                </td>
+                                    <td>
+                                    @if (item.IsDeactive)
+                                    {
+                                            <span style="padding:4px 6px; background-color:forestgreen;color:white">DeActive</span>
+                                    }
+                                    else
+                                    {
+                                            <span style="padding:4px 6px; background-color:red;color:white">Active</span>
+                                    }
+                                </td>
+                                <td>
+                                    <div style="display:flex;justify-content:flex-end">
+                                        <a class="btn btn-warning text-white rounded-pill" style="margin-right:10px" asp-action="Detail" asp-route-id="@item.Id">Detail</a>
+                                        <a class="btn btn-info text-white rounded-pill" style="margin-right:10px" asp-action="Update" asp-route-id="@item.Id">Update</a>
+                                        @if (item.IsDeactive)
+                                        {
+                                                <a class="btn btn-success text-white rounded-pill" style="margin-right:10px;width:118px" asp-action="Activity" asp-route-id="@item.Id">Active</a>
+
+                                        }
+                                        else
+                                        {
+                                                <a class="btn btn-danger text-white rounded-pill" style="margin-right:10px;width:118px" asp-action="Activity" asp-route-id="@item.Id">DeActive</a>
+
+                                        }
+                                    </div>
+
+                                </td>
+                            </tr>
+                           
+                        
+                        }
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

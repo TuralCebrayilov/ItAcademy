@@ -13,7 +13,9 @@ namespace ItAcademy.Models
         [Required(ErrorMessage = "Bu xana boş ola bilməz!!")]
         public string CoursesDuration { get; set; }
         public List<Students> Students { get; set; }
+        public List<Teachers> Teachers { get; set; }
         public List<Groups> Groups { get; set; }
+        
 
     }
 }

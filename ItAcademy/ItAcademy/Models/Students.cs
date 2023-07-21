@@ -16,7 +16,13 @@ namespace ItAcademy.Models
         public int Mobil { get; set; }
         [Required(ErrorMessage = "Bu xana boş ola bilməz!!")]
         public string Cours { get; set; }
-       
+      
+        public DateTime Birthday { get; set; }
+        public string GetFormattedBirthday()
+        {
+            return Birthday.ToString("dd MMMM yyyy");
+        }
+
         [NotMapped]
         public IFormFile Photo { get; set; }
 
@@ -24,7 +30,7 @@ namespace ItAcademy.Models
         public Courses Courses { get; set; }
         public int CoursesId { get; set; }
         public Groups Groups { get; set; }
-        public int GroupsId { get; set;}
+        public int GroupsId { get; set; }
         [Required(ErrorMessage = "Bu xana boş ola bilməz!!")]
         public int Payment { get; set; }
         

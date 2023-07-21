@@ -9,6 +9,8 @@ namespace ItAcademy.Models
 {
     public class Teachers
     {
+       
+
         public int Id { get; set; }
         [Required(ErrorMessage = "Bu xana boş ola bilməz!!")]
         public string Name { get; set; }
@@ -18,12 +20,20 @@ namespace ItAcademy.Models
         [Required(ErrorMessage = "Bu xana boş ola bilməz!!")]
         public string Salary { get; set; }
         public bool IsDeactive { get; set; }
+        public DateTime Birthday { get; set; }
+        public string GetFormattedBirthday()
+        {
+            return Birthday.ToString("dd MMMM yyyy");
+        }
         [NotMapped]
         public IFormFile Photo { get; set; }
-        public Positions Positions { get; set; }
-        public int PositionsId { get; set; }
+        //public Positions Positions { get; set; }
+        //public int PositionsId { get; set; }
+        public Courses Courses { get; set; }
+        public int CoursesId { get; set; }  
+
         public List<Groups> Groups { get; set; }
-        
+
 
 
     }

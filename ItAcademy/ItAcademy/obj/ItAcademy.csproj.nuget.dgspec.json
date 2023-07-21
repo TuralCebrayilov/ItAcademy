@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\Desktop\\ItAcademy\\ItAcademy\\ItAcademy\\ItAcademy.csproj": {}
+    "C:\\Users\\HP\\Desktop\\GIT\\ItAcademy\\ItAcademy\\ItAcademy\\ItAcademy.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\Desktop\\ItAcademy\\ItAcademy\\ItAcademy\\ItAcademy.csproj": {
+    "C:\\Users\\HP\\Desktop\\GIT\\ItAcademy\\ItAcademy\\ItAcademy\\ItAcademy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\Desktop\\ItAcademy\\ItAcademy\\ItAcademy\\ItAcademy.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\Desktop\\GIT\\ItAcademy\\ItAcademy\\ItAcademy\\ItAcademy.csproj",
         "projectName": "ItAcademy",
-        "projectPath": "C:\\Users\\HP\\Desktop\\ItAcademy\\ItAcademy\\ItAcademy\\ItAcademy.csproj",
+        "projectPath": "C:\\Users\\HP\\Desktop\\GIT\\ItAcademy\\ItAcademy\\ItAcademy\\ItAcademy.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\Desktop\\ItAcademy\\ItAcademy\\ItAcademy\\obj\\",
+        "outputPath": "C:\\Users\\HP\\Desktop\\GIT\\ItAcademy\\ItAcademy\\ItAcademy\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,26 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

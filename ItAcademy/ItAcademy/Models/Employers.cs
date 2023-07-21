@@ -16,8 +16,13 @@ namespace ItAcademy.Models
         [Required(ErrorMessage = "Bu xana boş ola bilməz!!")]
         public string Salary { get; set; }
         public bool IsDeactive { get; set; }
+        public DateTime Birthday { get; set; }
+        public string GetFormattedBirthday()
+        {
+            return Birthday.ToString("dd MMMM yyyy");
+        }
 
-         [NotMapped]
+        [NotMapped]
         public IFormFile Photo { get; set; }
         public Positions Positions { get; set; }
         public int PositionsId { get; set; }
