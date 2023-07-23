@@ -301,16 +301,22 @@
                             <span class="menu-title">Ana Səhifə</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Employers" asp-action="Index">
-                            <i class="icon-grid menu-icon"></i>
-                            <span class="menu-title">İşçilər</span>
-                        </a>
-                    </li>
+                    @* <li class="nav-item">
+                    <a class="nav-link" asp-controller="Employers" asp-action="Index">
+                    <i class="icon-grid menu-icon"></i>
+                    <span class="menu-title">İşçilər</span>
+                    </a>
+                    </li>*@
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Teachers" asp-action="Index">
                             <i class="icon-grid menu-icon"></i>
                             <span class="menu-title">Müəllimlər</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Employers" asp-action="Index">
+                            <i class="icon-grid menu-icon"></i>
+                            <span class="menu-title">İşçilər</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -319,6 +325,7 @@
                             <span class="menu-title">Tələbələr</span>
                         </a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Courses" asp-action="Index">
                             <i class="icon-grid menu-icon"></i>
@@ -337,6 +344,15 @@
                             <span class="menu-title">Vəzifələr</span>
                         </a>
                     </li>
+
+
+                    @* <li class="nav-item">
+                    <a class="nav-link" asp-controller="Positions" asp-action="Index">
+                    <i class="icon-grid menu-icon"></i>
+                    <span class="menu-title">Vəzifələr</span>
+                    </a>
+                    </li>*@
+
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                             <i class="icon-layout menu-icon"></i>
@@ -351,13 +367,13 @@
                             </ul>
                         </div>
                     </li>
-                
+
                 </ul>
             </nav>
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-            @RenderBody()
+                    @RenderBody()
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->

@@ -12,20 +12,24 @@ namespace ItAcademy.Models
        
 
         public int Id { get; set; }
-        [Required(ErrorMessage = "Bu xana boş ola bilməz!!")]
+        [Required(ErrorMessage ="Bu xana boş ola bilməz!")]      
+        
         public string Name { get; set; }
+        [Required(ErrorMessage = "Bu xana boş ola bilməz!")]
         public string Image { get; set; }
-        [Required(ErrorMessage = "Bu xana boş ola bilməz!!")]
-        public long PhoneNumber { get; set; }
-        [Required(ErrorMessage = "Bu xana boş ola bilməz!!")]
+        [Required(ErrorMessage = "Bu xana boş ola bilməz!")]
+        public long? PhoneNumber { get; set; }
+        [Required(ErrorMessage = "Bu xana boş ola bilməz!")]
         public string Salary { get; set; }
         public bool IsDeactive { get; set; }
-        public DateTime Birthday { get; set; }
+        [Required(ErrorMessage = "Bu xana boş ola bilməz!")]
+        public DateTime? Birthday { get; set; }
         public string GetFormattedBirthday()
         {
-            return Birthday.ToString("dd MMMM yyyy");
+            // "ToShortDateString()" metodu, tarihi kısa tarih biçiminde döndürür (örn. "20.07.1993")
+            return Birthday?.ToShortDateString();
         }
-        [NotMapped]
+            [NotMapped]
         public IFormFile Photo { get; set; }
         //public Positions Positions { get; set; }
         //public int PositionsId { get; set; }

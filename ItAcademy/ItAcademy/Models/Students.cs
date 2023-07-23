@@ -8,19 +8,23 @@ namespace ItAcademy.Models
     public class Students
     {
         public int Id { get; set; }
-        [Required(ErrorMessage ="Bu xana boş ola bilməz!!")]
+        [Required(ErrorMessage = "Bu xana boş ola bilməz!")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Bu xana boş ola bilməz!!")]
+        [Required(ErrorMessage = "Bu xana boş ola bilməz!")]
         public string Image { get; set; }
+        [Required(ErrorMessage = "Bu xana boş ola bilməz!")]
+        public int? Mobil { get; set; }
+        [Required(ErrorMessage = "Bu xana boş ola bilməz!")]
+        //public string Cours { get; set; }
+        //[Required(ErrorMessage = "Bu xana boş ola bilməz!")]
+
+        public DateTime? Birthday { get; set; }
         
-        public int Mobil { get; set; }
-        [Required(ErrorMessage = "Bu xana boş ola bilməz!!")]
-        public string Cours { get; set; }
-      
-        public DateTime Birthday { get; set; }
+
         public string GetFormattedBirthday()
         {
-            return Birthday.ToString("dd MMMM yyyy");
+            // "ToShortDateString()" metodu, tarihi kısa tarih biçiminde döndürür (örn. "20.07.1993")
+            return Birthday?.ToShortDateString();
         }
 
         [NotMapped]

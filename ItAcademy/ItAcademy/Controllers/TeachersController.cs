@@ -16,7 +16,7 @@ namespace ItAcademy.Controllers
         private readonly IWebHostEnvironment _env;
         public TeachersController(AppDbContext Db, IWebHostEnvironment env)
         {
-                
+
             _Db = Db;
             _env = env;
         }
@@ -29,7 +29,7 @@ namespace ItAcademy.Controllers
         public async Task<IActionResult> Create()
         {
             ViewBag.Courses = await _Db.Courses.ToListAsync();
-           
+
             return View();
         }
         [HttpPost]
@@ -37,7 +37,7 @@ namespace ItAcademy.Controllers
         public async Task<IActionResult> Create(Teachers teachers, int CatId)
         {
             ViewBag.Courses = await _Db.Courses.ToListAsync();
-           
+
             #region Save Image
 
 
@@ -74,6 +74,99 @@ namespace ItAcademy.Controllers
             return RedirectToAction("Index");
         }
         #endregion
+        #region Update
+        public async Task<IActionResult> Update(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            Teachers _DbTeacers = await _Db.Teachers.FirstOrDefaultAsync(x => x.Id == id);
+            if (_DbTeacers == null)
+            {
+                return BadRequest();
+            }
+            ViewBag.Courses = await _Db.Courses.ToListAsync();
+            return View(_DbTeacers);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int? id, Teachers teachers, int CatId)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            Teachers _DbTeacers = await _Db.Teachers.FirstOrDefaultAsync(x => x.Id == id);
+            if (_DbTeacers == null)
+            {
+                return BadRequest();
+            }
+            ViewBag.Courses = await _Db.Courses.ToListAsync();
+            //#region Exist Item
+            //bool isExist = await _Db.Teachers.AnyAsync(x => x.Name == teachers.Name && CatId != id);
+            //if (isExist)
+            //{
+            //    ModelState.AddModelError("Name", "This teachers is already exist !");
+            //    return View(teachers);
+            //}
+            //#endregion
+            #region Save Image
 
+
+            if (teachers.Photo != null)
+            {
+                if (!teachers.Photo.IsImage())
+                {
+                    ModelState.AddModelError("Photo", "Şəkil seçin!!");
+                    return View();
+                }
+                if (teachers.Photo == null)
+                {
+                    ModelState.AddModelError("Photo", "max 1mb !!");
+                    return View();
+                }
+                string folder = Path.Combine(_env.WebRootPath, "images");
+                _DbTeacers.Image = await teachers.Photo.SaveFileAsync(folder);
+
+            }
+
+            #endregion
+            _DbTeacers.Name = teachers.Name;
+            _DbTeacers.Salary = teachers.Salary;
+            _DbTeacers.Birthday = teachers.Birthday;
+            _DbTeacers.PhoneNumber = teachers.PhoneNumber;
+
+            _DbTeacers.CoursesId = CatId;
+
+            await _Db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        #endregion
+        #region Activity
+        public async Task<IActionResult> Activity(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            Teachers _DbTeachers = await _Db.Teachers.FirstOrDefaultAsync(x => x.Id == id);
+            if (_DbTeachers == null)
+            {
+                return BadRequest();
+            }
+            if (_DbTeachers.IsDeactive)
+            {
+                _DbTeachers.IsDeactive = false;
+            }
+            else
+            {
+                _DbTeachers.IsDeactive = true;
+            }
+            await _Db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        #endregion
+      
     }
 }

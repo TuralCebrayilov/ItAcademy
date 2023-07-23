@@ -20,11 +20,17 @@
                             <th>
                                 Ad
                             </th>
+                             <th>
+                               Doğum Tarixi
+                            </th>
+                             <th>
+                                Maaş
+                            </th>
                             <th>
                                 Mobil
                             </th>
                             <th>
-                                Vəzifə
+                                İxtisas
                             </th>
                             <th>
                                 Status
@@ -36,10 +42,17 @@
                         {
                             <tr>
                                 <td class="py-1">
-                                    <img src="~/~/../../images/@item.Image" alt="image" />
+                                    <img style="width:70px; height:70px;object-fit:cover" src="~/~/../../images/@item.Image" alt="image" />
                                 </td>
                                 <td>
                                   @item.Name
+                                </td>
+                               
+                                <td>
+                                    @item.Birthday?.ToShortDateString()
+                                </td>
+                                <td>
+                                    @item.Salary
                                 </td>
                                 <td>
                                 @item.PhoneNumber
@@ -50,30 +63,34 @@
                                     <td>
                                     @if (item.IsDeactive)
                                     {
-                                            <span style="padding:4px 6px; background-color:forestgreen;color:white">DeActive</span>
+                                            <span style="padding:2px 3px; background-color:red;color:white">DeActive</span>
                                     }
                                     else
                                     {
-                                            <span style="padding:4px 6px; background-color:red;color:white">Active</span>
+                                            <span style="padding:2px 3px; background-color:green;color:white">Active</span>
                                     }
                                 </td>
                                 <td>
                                     <div style="display:flex;justify-content:flex-end">
-                                        <a class="btn btn-warning text-white rounded-pill" style="margin-right:10px" asp-action="Detail" asp-route-id="@item.Id">Detail</a>
-                                        <a class="btn btn-info text-white rounded-pill" style="margin-right:10px" asp-action="Update" asp-route-id="@item.Id">Update</a>
+
+                                        <a class="btn btn-info text-white rounded-pill" style="margin-right:5px" asp-action="Update" asp-route-id="@item.Id">Update</a>
                                         @if (item.IsDeactive)
                                         {
-                                                <a class="btn btn-success text-white rounded-pill" style="margin-right:10px;width:118px" asp-action="Activity" asp-route-id="@item.Id">Active</a>
+                                                <a class="btn btn-success text-white rounded-pill" style="margin-right:5px;/*width:118px*/" asp-action="Activity" asp-route-id="@item.Id">Active</a>
 
                                         }
                                         else
                                         {
-                                                <a class="btn btn-danger text-white rounded-pill" style="margin-right:10px;width:118px" asp-action="Activity" asp-route-id="@item.Id">DeActive</a>
+                                                <a class="btn btn-danger text-white rounded-pill" style="margin-right:5px;/*width:118px*/" asp-action="Activity" asp-route-id="@item.Id">DeActive</a>
 
                                         }
                                     </div>
 
                                 </td>
+                             @*   <td>
+                                    <a class="btn btn-warning text-white rounded-pill" style="margin-right:10px" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                </td>*@
+                               
                             </tr>
                            
                         

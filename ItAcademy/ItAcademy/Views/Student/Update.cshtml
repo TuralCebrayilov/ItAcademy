@@ -1,0 +1,94 @@
+﻿@model Students
+<div class="row">
+    <div class="col-9">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"></h5>
+
+            </div>
+            <div class="card-body">
+                <form>
+                <div class="mb-3 form-group">
+                    <label asp-for="Photo" class="form-label">Şəkil</label>
+                    <input asp-for="Photo" accept="image/*" class="form-control" />
+                    <span asp-validation-for="Photo" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 form-group">
+                    <label asp-for="Name" class="form-label">Ad</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3 form-group">
+                    <label asp-for="Birthday" class="form-label">Doğum Tarixi</label>
+                    <input type="date" asp-for="Birthday" class="form-control" />
+                    <span asp-validation-for="Birthday" class="text-danger"></span>
+
+                </div>
+                <div class="mb-3 form-group">
+                    <label asp-for="Mobil" class="form-label">Mobil</label>
+                    <input asp-for="Mobil" class="form-control" />
+                    <span asp-validation-for="Mobil" class="text-danger"></span>
+                </div>
+
+
+                <div class="mb-3 form-group">
+                    <label asp-for="Payment" class="form-label">Maaş</label>
+                    <input asp-for="Payment" class="form-control" />
+                    <span asp-validation-for="Payment" class="text-danger"></span>
+
+                </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Kurs</label>
+                        <select class="form-control" name="CatId">
+                            @foreach (Courses cat in ViewBag.Courses)
+                            {
+                                if (Model.CoursesId == cat.Id)
+                                {
+                                    <option selected value="@cat.Id">@cat.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@cat.Id">@cat.Name</option>
+
+                                }
+                            }
+
+
+                        </select>
+                </div>
+               
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Qrup</label>
+                    <select class="form-control" name="CatId">
+                        @foreach (Groups var in ViewBag.Groups)
+                        {
+                            if (Model.GroupsId == var.Id)
+                            {
+                                <option selected value="@var.Id">@var.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@var.Id">@var.Name</option>
+
+                            }
+                        }
+
+
+                    </select>
+                </div>
+
+
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button asp-action="Index" class="btn btn-danger">Go Back</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -30,6 +30,9 @@ namespace ItAcademy.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeactive")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Mark")
                         .HasColumnType("int");
 
@@ -49,10 +52,12 @@ namespace ItAcademy.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Birthday")
+                    b.Property<DateTime?>("Birthday")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Image")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeactive")
@@ -62,7 +67,8 @@ namespace ItAcademy.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("PhoneNumber")
+                    b.Property<long?>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("bigint");
 
                     b.Property<int>("PositionsId")
@@ -121,6 +127,7 @@ namespace ItAcademy.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -135,7 +142,8 @@ namespace ItAcademy.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Birthday")
+                    b.Property<DateTime?>("Birthday")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Cours")
@@ -155,7 +163,8 @@ namespace ItAcademy.Migrations
                     b.Property<bool>("IsDeactive")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Mobil")
+                    b.Property<int?>("Mobil")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -181,13 +190,15 @@ namespace ItAcademy.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Birthday")
+                    b.Property<DateTime?>("Birthday")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<int>("CoursesId")
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeactive")
@@ -197,7 +208,8 @@ namespace ItAcademy.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("PhoneNumber")
+                    b.Property<long?>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("bigint");
 
                     b.Property<string>("Salary")
