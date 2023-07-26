@@ -34,9 +34,10 @@ namespace ItAcademy.Models
         //public Positions Positions { get; set; }
         //public int PositionsId { get; set; }
         public Courses Courses { get; set; }
-        public int CoursesId { get; set; }  
+        public int CoursesId { get; set; } 
+        
 
-        public List<Groups> Groups { get; set; }
+        //public List<TeacherGroup> TeacherGroups { get; set; }
 
 
 

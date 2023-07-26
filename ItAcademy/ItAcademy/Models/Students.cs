@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace ItAcademy.Models
 {
@@ -15,7 +16,7 @@ namespace ItAcademy.Models
         [Required(ErrorMessage = "Bu xana boş ola bilməz!")]
         public int? Mobil { get; set; }
         [Required(ErrorMessage = "Bu xana boş ola bilməz!")]
-        //public string Cours { get; set; }
+        
         //[Required(ErrorMessage = "Bu xana boş ola bilməz!")]
 
         public DateTime? Birthday { get; set; }
@@ -33,8 +34,8 @@ namespace ItAcademy.Models
         public bool IsDeactive { get; set; }
         public Courses Courses { get; set; }
         public int CoursesId { get; set; }
-        public Groups Groups { get; set; }
-        public int GroupsId { get; set; }
+
+        public List<GroupStudent> GroupStudent { get; set; }
         [Required(ErrorMessage = "Bu xana boş ola bilməz!!")]
         public int Payment { get; set; }
         

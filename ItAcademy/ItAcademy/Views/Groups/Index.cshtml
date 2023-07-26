@@ -16,14 +16,11 @@
                         <tr>
 
                             <th>
-                                Kurs
+                                Ad
                             </th>
-
                             <th>
-                               Tələbə
-                            </th>
-
-                          
+                                Kurs
+                            </th>                        
                             <th>
                                 Status
                             </th>
@@ -37,12 +34,11 @@
                                 <td>
                                     @item.Name
                                 </td>
+                              
                                 <td>
-                                    @item.Courses
+                                    @item.Courses.Name
                                 </td>
-                                <td>
-                                    @item.Students
-                                </td>
+                              
 
                                 <td>
                                     @if (item.IsDeactive)
@@ -71,9 +67,9 @@
                                     </div>
 
                                 </td>
-                                   <td>
+                              @*     <td>
                             <a class="btn btn-warning text-white rounded-pill" style="margin-right:10px" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                            </td>
+                            </td>*@
 
                         </tr>
 

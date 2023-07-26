@@ -1,15 +1,17 @@
 ﻿using ItAcademy.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ItAcademy.DAL
 {
-    public class AppDbContext: DbContext
+    public class AppDbContext: IdentityDbContext<AppUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
         { 
         }
        
         public DbSet<Students> Students { get; set; }
+        public DbSet<GroupStudent> GroupStudent { get; set; }
         public DbSet<Teachers> Teachers { get; set; }
         public DbSet<Employers> Employers { get; set; }
         public DbSet<Groups> Groups { get; set; }

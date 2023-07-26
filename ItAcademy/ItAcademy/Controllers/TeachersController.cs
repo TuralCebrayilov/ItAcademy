@@ -81,13 +81,13 @@ namespace ItAcademy.Controllers
             {
                 return NotFound();
             }
-            Teachers _DbTeacers = await _Db.Teachers.FirstOrDefaultAsync(x => x.Id == id);
-            if (_DbTeacers == null)
+            Teachers _DbTeachers = await _Db.Teachers.FirstOrDefaultAsync(x => x.Id == id);
+            if (_DbTeachers == null)
             {
                 return BadRequest();
             }
             ViewBag.Courses = await _Db.Courses.ToListAsync();
-            return View(_DbTeacers);
+            return View(_DbTeachers);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -97,8 +97,8 @@ namespace ItAcademy.Controllers
             {
                 return NotFound();
             }
-            Teachers _DbTeacers = await _Db.Teachers.FirstOrDefaultAsync(x => x.Id == id);
-            if (_DbTeacers == null)
+            Teachers _DbTeachers = await _Db.Teachers.FirstOrDefaultAsync(x => x.Id == id);
+            if (_DbTeachers == null)
             {
                 return BadRequest();
             }
@@ -127,17 +127,17 @@ namespace ItAcademy.Controllers
                     return View();
                 }
                 string folder = Path.Combine(_env.WebRootPath, "images");
-                _DbTeacers.Image = await teachers.Photo.SaveFileAsync(folder);
+                _DbTeachers.Image = await teachers.Photo.SaveFileAsync(folder);
 
             }
 
             #endregion
-            _DbTeacers.Name = teachers.Name;
-            _DbTeacers.Salary = teachers.Salary;
-            _DbTeacers.Birthday = teachers.Birthday;
-            _DbTeacers.PhoneNumber = teachers.PhoneNumber;
+            _DbTeachers.Name = teachers.Name;
+            _DbTeachers.Salary = teachers.Salary;
+            _DbTeachers.Birthday = teachers.Birthday;
+            _DbTeachers.PhoneNumber = teachers.PhoneNumber;
 
-            _DbTeacers.CoursesId = CatId;
+            _DbTeachers.CoursesId = CatId;
 
             await _Db.SaveChangesAsync();
             return RedirectToAction("Index");

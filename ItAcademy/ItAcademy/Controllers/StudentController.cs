@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ItAcademy.Controllers
@@ -22,7 +23,16 @@ namespace ItAcademy.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            List<Students> students = await _Db.Students.Include(x => x.Courses).Include(x => x.Groups).ToListAsync();
+            //  List<Students> students = await _Db.Students.Include(x => x.Courses).Include(x=> x.GroupStudent).ThenInclude(x=> x.Groups).ToListAsync();
+
+            //   List<GroupStudent> groupStudents = await _Db.GroupStudent.Include(x => x.Groups).Include(x=> x.Students.).ToListAsync();
+
+            var students = await _Db.Students
+            .Include(s => s.GroupStudent)
+                .ThenInclude(sg => sg.Groups)
+            .Include(s => s.Courses)
+            .ToListAsync();
+
             return View(students);
         }
         #region create
@@ -30,6 +40,9 @@ namespace ItAcademy.Controllers
         {
             ViewBag.Courses = await _Db.Courses.ToListAsync();
             ViewBag.Groups = await _Db.Groups.ToListAsync();
+
+            ViewBag.GroupStudent = await _Db.GroupStudent.ToListAsync();
+            //ViewBag.StudentGroups = await _Db.StudentGroups.ToListAsync();
 
             return View();
         }
@@ -39,6 +52,8 @@ namespace ItAcademy.Controllers
         {
             ViewBag.Courses = await _Db.Courses.ToListAsync();
             ViewBag.Groups = await _Db.Groups.ToListAsync();
+            ViewBag.GroupStudent = await _Db.GroupStudent.ToListAsync();
+            //ViewBag.StudentGroups = await _Db.StudentGroups.ToListAsync();
 
             #region Save Image
 
@@ -62,6 +77,7 @@ namespace ItAcademy.Controllers
             string folder = Path.Combine(_env.WebRootPath, "images");
             students.Image = await students.Photo.SaveFileAsync(folder);
             #endregion
+
             #region Exist Item
             bool isExist = await _Db.Students.AnyAsync(x => x.Name == students.Name);
             if (isExist)
@@ -70,9 +86,20 @@ namespace ItAcademy.Controllers
                 return View(students);
             }
             #endregion
-            students.GroupsId = CatId;
+
+            var GroupStudent = new List<GroupStudent>();
+            var groupStudent = new GroupStudent
+            {
+                StudentsId = students.Id,
+                GroupsId = GatId
+            };
+            GroupStudent.Add(groupStudent);
+            students.GroupStudent = GroupStudent;
+
             students.CoursesId = CatId;
+
             await _Db.Students.AddAsync(students);
+           // await _Db.GroupStudent.AddAsync(groupStudent);
             await _Db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
@@ -90,7 +117,7 @@ namespace ItAcademy.Controllers
                 return BadRequest();
             }
             ViewBag.Courses = await _Db.Courses.ToListAsync();
-            ViewBag.Groups = await _Db.Groups.ToListAsync();
+            ViewBag.GroupStudent = await _Db.GroupStudent.ToListAsync();
             return View(_DbStudents);
         }
         [HttpPost]
@@ -107,7 +134,7 @@ namespace ItAcademy.Controllers
                 return BadRequest();
             }
             ViewBag.Courses = await _Db.Courses.ToListAsync();
-            ViewBag.Groups = await _Db.Groups.ToListAsync();
+            ViewBag.GroupStudent = await _Db.GroupStudent.ToListAsync();
             //#region Exist Item
             //bool isExist = await _Db.Teachers.AnyAsync(x => x.Name == teachers.Name && CatId != id);
             //if (isExist)
@@ -143,8 +170,9 @@ namespace ItAcademy.Controllers
             _DbStudents.Mobil = students.Mobil;
           
            
-            _DbStudents.GroupsId = GatId;
+            //_DbStudents.StudentGroups = GatId;
             _DbStudents.CoursesId = CatId;
+            //students.GroupStudentId = GatId;
 
             await _Db.SaveChangesAsync();
             return RedirectToAction("Index");

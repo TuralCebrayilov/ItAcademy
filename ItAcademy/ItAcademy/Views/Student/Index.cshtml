@@ -59,14 +59,17 @@
                                 <td>
                                     @item.Payment
                                 </td>
-                              
-                               
                                 <td>
                                     @item.Courses.Name
                                 </td>
-                                <th>
-                                    @item.Groups.Name
-                                </th>
+                                <td>
+                                    @foreach (var group in item.GroupStudent)
+                                    {
+                                        @group.Groups.Name
+                                    }
+                                </td>
+                               
+                               
                                 <td>
                                     @if (item.IsDeactive)
                                     {

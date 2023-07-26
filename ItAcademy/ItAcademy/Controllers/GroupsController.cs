@@ -1,9 +1,11 @@
 ﻿using ItAcademy.DAL;
+using ItAcademy.Helper;
 using ItAcademy.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace ItAcademy.Controllers
@@ -13,6 +15,9 @@ namespace ItAcademy.Controllers
 
         private readonly AppDbContext _Db;
         private readonly IWebHostEnvironment _env;
+
+       
+
         public GroupsController(AppDbContext Db, IWebHostEnvironment env)
         {
 
@@ -21,28 +26,61 @@ namespace ItAcademy.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            List<Groups> groups = await _Db.Groups.ToListAsync();
-
+            List<Groups> groups = await _Db.Groups.Include(x => x.Courses).ToListAsync();
             return View(groups);
         }
-        public IActionResult Create()
+        #region create
+        public async Task<IActionResult> Create()
         {
+            ViewBag.Courses = await _Db.Courses.ToListAsync();
+
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(Groups groups)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Groups groups, int CatId)
         {
+            ViewBag.Courses = await _Db.Courses.ToListAsync();
+           
+
+            //    #region Save Image
+
+
+            //    if (groups.Photo == null)
+            //    {
+            //        ModelState.AddModelError("Photo", "Image can't be null!!");
+            //        return View();
+            //    }
+            //    if (!groups.Photo.IsImage())
+            //    {
+            //        ModelState.AddModelError("Photo", "Please select image type");
+            //        return View();
+            //    }
+            //    if (groups.Photo == null)
+            //    {
+            //        ModelState.AddModelError("Photo", "max 1mb !!");
+            //        return View();
+            //    }
+
+            //    string folder = Path.Combine(_env.WebRootPath, "images");
+            //groups.Image = await groups.Photo.SaveFileAsync(folder);
+            //    #endregion
+            #region Exist Item
             bool isExist = await _Db.Groups.AnyAsync(x => x.Name == groups.Name);
             if (isExist)
             {
-                ModelState.AddModelError("Name", "Bu kurs artıq mövcuddur !");
+                ModelState.AddModelError("Name", "This groups is already exist !");
                 return View(groups);
             }
+            #endregion
+            groups.CoursesId = CatId;
+           
             await _Db.Groups.AddAsync(groups);
             await _Db.SaveChangesAsync();
-
             return RedirectToAction("Index");
         }
+        #endregion
+        #region Update
         public async Task<IActionResult> Update(int? id)
         {
             if (id == null)
@@ -54,11 +92,12 @@ namespace ItAcademy.Controllers
             {
                 return BadRequest();
             }
+            ViewBag.Courses = await _Db.Courses.ToListAsync();
             return View(_DbGroups);
-
         }
         [HttpPost]
-        public async Task<IActionResult> Update(int? id, Groups groups)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int? id, Groups groups, int CatId)
         {
             if (id == null)
             {
@@ -69,61 +108,47 @@ namespace ItAcademy.Controllers
             {
                 return BadRequest();
             }
-            bool isExist = await _Db.Groups.AnyAsync(x => x.Name == groups.Name && x.Id != id);
-            if (isExist)
-            {
-                ModelState.AddModelError("Name", "This groups is already exist !");
-                return View(groups);
-            }
+            ViewBag.Courses = await _Db.Courses.ToListAsync();
+            //#region Exist Item
+            //bool isExist = await _Db.Teachers.AnyAsync(x => x.Name == teachers.Name && CatId != id);
+            //if (isExist)
+            //{
+            //    ModelState.AddModelError("Name", "This teachers is already exist !");
+            //    return View(teachers);
+            //}
+            //#endregion
+            //#region Save Image
 
+
+            //if (groups.Photo != null)
+            //{
+            //    if (!groups.Photo.IsImage())
+            //    {
+            //        ModelState.AddModelError("Photo", "Şəkil seçin!!");
+            //        return View();
+            //    }
+            //    if (teachers.Photo == null)
+            //    {
+            //        ModelState.AddModelError("Photo", "max 1mb !!");
+            //        return View();
+            //    }
+            //    string folder = Path.Combine(_env.WebRootPath, "images");
+            //    _DbGroups.Image = await teachers.Photo.SaveFileAsync(folder);
+
+            //}
+
+            //#endregion
             _DbGroups.Name = groups.Name;
-            
+
+
+
+            _DbGroups.CoursesId = CatId;
+
             await _Db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-
-        public async Task<IActionResult> Detail(int? id)
-        {
-
-            Groups groups = await _Db.Groups.FindAsync(id);
-
-
-            //_DbGroups.Name = service.Name;
-            //_DbGroups.Description = service.Description;
-
-            return View(groups);
-        }
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    Courses _DbGroups = await _Db.Courses.FirstOrDefaultAsync(x => x.Id == id);
-        //    if (_DbGroups == null)
-        //    {
-        //        return BadRequest();
-        //    }
-        //    return View(_DbGroups);
-
-        //}
-        //[HttpPost]
-        //[ActionName("Delete")]
-        //public async Task<IActionResult> DeletePost(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    Courses _DbGroups = await _Db.Courses.FirstOrDefaultAsync(x => x.Id == id);
-        //    if (_DbGroups == null)
-        //    {
-        //        return BadRequest();
-        //    }
-        //    _DbGroups.IsDeactive = true;
-        //    await _Db.SaveChangesAsync();
-        //    return RedirectToAction("Index");
-        //}
+        #endregion
+        #region Activity
         public async Task<IActionResult> Activity(int? id)
         {
             if (id == null)
@@ -146,5 +171,7 @@ namespace ItAcademy.Controllers
             await _Db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        #endregion
+
     }
 }
