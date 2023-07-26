@@ -20,7 +20,7 @@ namespace ItAcademy.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            List<Positions> positions = await _Db.Positions.ToListAsync();
+            List<Positions> positions = await _Db.Positions.Include(x=>x.Employers).ToListAsync();
 
             return View(positions);
         }

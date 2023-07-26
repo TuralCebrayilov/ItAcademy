@@ -1,0 +1,50 @@
+﻿@model CreateVM 
+<div class="row">
+    <div class="col-9">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Yeni Hesab Yarat</h5>
+
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+
+
+                    <div class="mb-3 form-group">
+                        <label asp-for="Name" class="form-label">Ad</label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                     <div class="mb-3 form-group">
+                        <label asp-for="Username" class="form-label">İstifadəçi Adı</label>
+                        <input asp-for="Username" class="form-control" />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3 form-group">
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3 form-group">
+                        <label asp-for="Password" class="form-label">Şifrə</label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3 form-group">
+                        <label asp-for="CheckPassword" class="form-label">Təkrar şifrə</label>
+                        <input asp-for="CheckPassword" class="form-control" />
+                        <span asp-validation-for="CheckPassword" class="text-danger"></span>
+                    </div>
+
+                  
+                    <button type="submit" class="btn btn-primary">YARAT</button>
+                    <button asp-action="Index" class="btn btn-danger">GERİ</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

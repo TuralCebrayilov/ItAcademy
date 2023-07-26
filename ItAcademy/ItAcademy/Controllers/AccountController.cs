@@ -58,7 +58,7 @@ namespace ItAcademy.Controllers
                     return View();
               
             }
-            return RedirectToAction("Index","DashBoard");
+            return RedirectToAction("Index", "DashBoard");
         }
         public IActionResult Register() 
         {
@@ -85,7 +85,7 @@ namespace ItAcademy.Controllers
                 }
                 return View();
             }
-            await _userManager.AddToRoleAsync(NewUser,Roles.Admin.ToString());
+            await _userManager.AddToRoleAsync(NewUser,Roles.Member.ToString());
             await _signInManager.SignInAsync(NewUser, registerVM.IsRemember); 
             return RedirectToAction("Index", "DashBoard");
         }
