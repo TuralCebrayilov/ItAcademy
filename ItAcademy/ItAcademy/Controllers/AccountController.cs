@@ -1,13 +1,16 @@
 ﻿using ItAcademy.Helper;
 using ItAcademy.Models;
 using ItAcademy.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Data;
 using System.Threading.Tasks;
 
 namespace ItAcademy.Controllers
 {
+    
     public class AccountController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -88,6 +91,11 @@ namespace ItAcademy.Controllers
             await _userManager.AddToRoleAsync(NewUser,Roles.Member.ToString());
             await _signInManager.SignInAsync(NewUser, registerVM.IsRemember); 
             return RedirectToAction("Index", "DashBoard");
+        }
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Login", "DashBoard");
         }
          
         //public async Task  CreateRoles()

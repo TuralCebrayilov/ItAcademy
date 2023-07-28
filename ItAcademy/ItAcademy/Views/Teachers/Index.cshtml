@@ -7,7 +7,7 @@
                     Müəllimlər
                 </h3>
                 <div>
-                    <a asp-action="Create" class="btn btn-danger text-white rounded-pill" style="margin-right:10px">Create</a>
+                    <a asp-action="Create" class="btn btn-danger text-white rounded-pill" style="margin-right:10px">Əlavə Et</a>
                 </div>
             </div>
             <div class="table-responsive">
@@ -63,25 +63,25 @@
                                     <td>
                                     @if (item.IsDeactive)
                                     {
-                                            <span style="padding:2px 3px; background-color:red;color:white">DeActive</span>
+                                            <span style="padding:2px 3px; background-color:red;color:white">İşləmir</span>
                                     }
                                     else
                                     {
-                                            <span style="padding:2px 3px; background-color:green;color:white">Active</span>
+                                            <span style="padding:2px 3px; background-color:green;color:white">İşləyir</span>
                                     }
                                 </td>
                                 <td>
                                     <div style="display:flex;justify-content:flex-end">
 
-                                        <a class="btn btn-info text-white rounded-pill" style="margin-right:5px" asp-action="Update" asp-route-id="@item.Id">Update</a>
+                                        <a class="btn btn-info text-white rounded-pill" style="margin-right:5px" asp-action="Update" asp-route-id="@item.Id">Dəyiş</a>
                                         @if (item.IsDeactive)
                                         {
-                                                <a class="btn btn-success text-white rounded-pill" style="margin-right:5px;/*width:118px*/" asp-action="Activity" asp-route-id="@item.Id">Active</a>
+                                                <a class="btn btn-success text-white rounded-pill" style="margin-right:5px;/*width:118px*/" asp-action="Activity" asp-route-id="@item.Id">İşləyir</a>
 
                                         }
                                         else
                                         {
-                                                <a class="btn btn-danger text-white rounded-pill" style="margin-right:5px;/*width:118px*/" asp-action="Activity" asp-route-id="@item.Id">DeActive</a>
+                                                <a class="btn btn-danger text-white rounded-pill" style="margin-right:5px;/*width:118px*/" asp-action="Activity" asp-route-id="@item.Id">İşləmir</a>
 
                                         }
                                     </div>

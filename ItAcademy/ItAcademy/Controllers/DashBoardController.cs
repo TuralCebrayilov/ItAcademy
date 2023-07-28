@@ -1,4 +1,6 @@
-﻿using ItAcademy.Models;
+﻿using ItAcademy.Helper;
+using ItAcademy.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace ItAcademy.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DashBoardController : Controller
     {
       

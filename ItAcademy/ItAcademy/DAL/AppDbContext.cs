@@ -17,5 +17,10 @@ namespace ItAcademy.DAL
         public DbSet<Groups> Groups { get; set; }
         public DbSet<Courses> Courses { get; set; }
         public DbSet<Positions> Positions { get; set; }
+        public DbSet<Budget> Budgets { get; set; } 
+        public DbSet<Benefit> Benefits { get; set; }
+        public DbSet<Cost> Costs { get; set; }
+       
+       
     }
 }
