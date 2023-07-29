@@ -4,9 +4,7 @@
 <!-- Bordered Table -->
 <div class="card">
     <div class="card-header" style="display:flex;justify-content:space-between">
-        <form method="get">
-            <input name="search" type="search" />
-        </form>
+       <h5>Gəlirlər</h5>
 
         <div>
             <a asp-action="Create" class="btn btn-danger text-white rounded-pill" style="margin-right:10px">Əlavə Et</a>
@@ -16,14 +14,23 @@
     </div>
     <div class="card-body">
         <div class="table-responsive text-nowrap">
-            <table class="table table-bordered">
-                <thead>
+            <table class="table table-bordered" id="example">
+               @* <thead>
                     <tr>
                         <th>Miqdar</th>
                         <th>Təsvir</th>
                         <th>Tarix</th>
                         <th>Kim tərəfdən</th>
-                        <th style="text-align:right">Actions</th>
+                        <th ></th>
+                    </tr>
+                </thead>*@
+                <thead>
+                    <tr>
+                        <th>Məbləğ</th>
+                        <th>Məlumat</th>
+                        <th>Tarix</th>
+                        <th>Kim Tərəfindən</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,30 +51,45 @@
                 </tbody>
             </table>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="pagnation my-2">
-                    <ul style="list-style:none;display:flex;justify-content:center;">
-                        <li class="page-item prev">
-                            <a class="page-link" asp-route-page="page">
-                                <i class="tf-icon bx bx-chevrons-left"></i>
-                            </a>
-                        </li>
-                        @for (int i = 1; i <= ViewBag.PageCount; i++)
-                        {
-                            <li class="page-item  @(i == ViewBag.CurrentPage ? "active" : "")"><a class="page-link" asp-action="Index" asp-route-page="@i">@i</a></li>
-                        }
-                        <li class="page-item next">
-                            <a class="page-link" asp-route-page="@ViewBag.PageCount">
-                                <i class="tf-icon bx bx-chevrons-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+       
     </div>
 </div>
-<!--/ Bordered Table -->
+@section Css{
 
-<hr class ="my-5"   />
+    @* <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />*@
+    @*<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css
+" />*@
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css" />
+}
+@section Scripts{
+    @* <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>*@
+
+    @*  <script>
+        let table = new DataTable('#Cost1');</script>*@
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+
+    </script>
+}
+<!--/ Bordered Table -->

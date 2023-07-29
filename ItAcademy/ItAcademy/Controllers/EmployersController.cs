@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ItAcademy.Controllers
@@ -25,7 +26,7 @@ namespace ItAcademy.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            List<Employers> employers = await _Db.Employers.Include(x => x.Positions).ToListAsync();
+            List<Employers> employers = await _Db.Employers.Include(x => x.Positions).OrderByDescending(x => x.Id).ToListAsync();
             return View(employers);
         }
         #region create

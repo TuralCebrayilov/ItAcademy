@@ -22,7 +22,7 @@ namespace ItAcademy.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            List<Benefit> benefits= await _Db.Benefits.ToListAsync();
+            List<Benefit> benefits= await _Db.Benefits.OrderByDescending(x => x.Id).ToListAsync();
             
             /*List<Benefit> benefits = new List<Benefit>();*/
             //if (!string.IsNullOrEmpty(Search))

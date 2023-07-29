@@ -16,10 +16,11 @@ namespace ItAcademy.Controllers
         {
             _Db = Db;
         }
-        public async Task<IActionResult> Index(int page=1)
-        {
-            int take = 3;
-            List<Cost> costs = await _Db.Costs.OrderByDescending(x=>x.Id).Take(take).ToListAsync();
+        public async Task<IActionResult> Index(/*int page=1*/)
+        { 
+        //    decimal take = 3;
+        //    ViewBag.PageCount = Math.Ceiling((await _Db.Costs.CountAsync()/take));
+            List<Cost> costs = await _Db.Costs.OrderByDescending(x=>x.Id).ToListAsync();
            
 
           

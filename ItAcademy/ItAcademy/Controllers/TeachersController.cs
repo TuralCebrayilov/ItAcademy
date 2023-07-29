@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ItAcademy.Controllers
@@ -24,7 +25,7 @@ namespace ItAcademy.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            List<Teachers> teachers = await _Db.Teachers.Include(x => x.Courses).ToListAsync();
+            List<Teachers> teachers = await _Db.Teachers.Include(x => x.Courses).OrderByDescending(x => x.Id).ToListAsync();
             return View(teachers);
         }
         #region create

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ItAcademy.Controllers
@@ -22,7 +23,7 @@ namespace ItAcademy.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            List<Positions> positions = await _Db.Positions.Include(x=>x.Employers).ToListAsync();
+            List<Positions> positions = await _Db.Positions.Include(x=>x.Employers).OrderByDescending(x => x.Id).ToListAsync();
 
             return View(positions);
         }

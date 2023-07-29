@@ -33,7 +33,7 @@ namespace ItAcademy.Controllers
             var students = await _Db.Students
             .Include(s => s.GroupStudent)
                 .ThenInclude(sg => sg.Groups)
-            .Include(s => s.Courses)
+            .Include(s => s.Courses).OrderByDescending(x => x.Id)
             .ToListAsync();
 
             return View(students);

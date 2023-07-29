@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ItAcademy.Controllers
@@ -26,7 +27,7 @@ namespace ItAcademy.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            List<AppUser> DbUsers =await _userManager.Users.ToListAsync();
+            List<AppUser> DbUsers =await _userManager.Users.OrderByDescending(x => x.Id).ToListAsync();
             List<UserVM> usersVM = new List<UserVM>();
             foreach (AppUser Dbuser in DbUsers)
             {
