@@ -4,8 +4,7 @@ namespace ItAcademy.ViewModels
 {
     public class ResetPasswordVM
     {
-        [Required]
-        public string Username { get; set; }
+        public string? Name { get; set; }
         [Required(ErrorMessage = "Buxana boş ola bilməz!!")]
         [DataType(DataType.Password)]
         public string OldPassword { get; set; }

@@ -173,7 +173,6 @@ C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\ItAcademy
 C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\ItAcademy.TagHelpers.output.cache
 C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\ItAcademy.RazorCoreGenerate.cache
 C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
-C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Views\Courses\Create.cshtml.g.cs
 C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Views\Courses\Index.cshtml.g.cs
 C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Views\Courses\Update.cshtml.g.cs

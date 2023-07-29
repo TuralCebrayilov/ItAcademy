@@ -95,7 +95,7 @@ namespace ItAcademy.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Login", "DashBoard");
+            return RedirectToAction("Login", "Account");
         }
          
         //public async Task  CreateRoles()

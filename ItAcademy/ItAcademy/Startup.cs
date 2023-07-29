@@ -73,7 +73,7 @@ namespace ItAcademy
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=DashBoard}/{action=Index}/{id?}");
+                    pattern: "{controller=Account}/{action=Login}/{id?}");
             });
         }
     }

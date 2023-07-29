@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ItAcademy.Controllers
@@ -15,22 +16,13 @@ namespace ItAcademy.Controllers
         {
             _Db = Db;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page=1)
         {
-            List<Cost> costs = await _Db.Costs.ToListAsync();
-            //  if (!string.IsNullOrEmpty(search))
-            //  {
-            //      var benefitDb = from b in _Db.Benefits select/* d*/;
-            //      benefits = await _Db.Benefits.Where(x => x.Description.Contains(/*search*/)).OrderByDescending(x => x.Id).ToListAsync();
-            //return View(benefits);
-            //  }
+            int take = 3;
+            List<Cost> costs = await _Db.Costs.OrderByDescending(x=>x.Id).Take(take).ToListAsync();
+           
 
-            //  decimal take = 4;
-            //  ViewBag.PageCount=Math.Ceiling((decimal)(await _Db.Benefits.CountAsync()/take));
-            //  ViewBag.Currentpage = /*page*/;
-            //  benefits = await _Db.Benefits.OrderByDescending(x => x.Id).Skip((/*page-1*/)*4).Take((int)take).ToListAsync();
-
-
+          
 
             return View(costs);
         }

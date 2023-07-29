@@ -4,14 +4,11 @@
 <!-- Bordered Table -->
 <div class="card">
     <div class="card-header" style="display:flex;justify-content:space-between">
-        <form method="get">
-            <input name="search" type="search" />
-        </form>
-
+        <h3>
+            Xərclər
+        </h3>
         <div>
             <a asp-action="Create" class="btn btn-danger text-white rounded-pill" style="margin-right:10px">Əlavə Et</a>
-
-
         </div>
     </div>
     <div class="card-body">
@@ -35,36 +32,31 @@
                             <td>@item.CreateTime</td>
                             <td>@item.By</td>
                             <td>
-                                <div style="display:flex;justify-content:flex-end">
+                               @* <div style="display:flex;justify-content:flex-end">
                                     <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-info text-white" style="margin-right:10px"><i class="fa-solid fa-pen"></i></a>
-                                </div>
+                                </div>*@
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="pagnation my-2">
-                    <ul style="list-style:none;display:flex;justify-content:center;">
-                        <li class="page-item prev">
-                            <a class="page-link" asp-route-page="page">
-                                <i class="tf-icon bx bx-chevrons-left"></i>
-                            </a>
-                        </li>
-                        @for (int i = 1; i <= ViewBag.PageCount; i++)
-                        {
-                            <li class="page-item  @(i == ViewBag.CurrentPage ? "active" : "")"><a class="page-link" asp-action="Index" asp-route-page="@i">@i</a></li>
-                        }
-                        <li class="page-item next">
-                            <a class="page-link" asp-route-page="@ViewBag.PageCount">
-                                <i class="tf-icon bx bx-chevrons-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+        <div class="d-flex justify-content-center mt-3">
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Geri</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">İrəli</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

@@ -39,15 +39,17 @@
                     <div class="mb-3 form-group">
                         <label asp-for="Password" class="form-label">Şifrə</label>
                         <input asp-for="Password" class="form-control" />
+                        <a class="login-toggle-btn" id="togglePassword">Şifrəni göstər</a>
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div class="mb-3 form-group">
                         <label asp-for="CheckPassword" class="form-label">Təkrar şifrə</label>
                         <input asp-for="CheckPassword" class="form-control" />
+                        <a class="login-toggle-btn" id="togglePassword">Şifrəni göstər</a>
                         <span asp-validation-for="CheckPassword" class="text-danger"></span>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">YARAT</button>
+                    <button type="submit" class="btn btn-primary">Əlavə Et</button>
                     <a asp-action="Index" class="btn btn-danger">GERI</a>
                 </form>
             </div>
@@ -55,6 +57,21 @@
     </div>
 
 </div>
+<script>
+    const togglePassword = document
+        .querySelector('#togglePassword');
+    const Password = document.querySelector('#Password');
+    togglePassword.addEventListener('click', () => {
+        // Toggle the type attribute using
+        // getAttribure() method
+        const type = Password
+            .getAttribute('type') === 'Password' ?
+            'text' : 'Password';
+        Password.setAttribute('type', type);
+        // Toggle the eye and bi-eye icon
+        this.classList.toggle('bi-eye');
+    });
+</script>
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
 }

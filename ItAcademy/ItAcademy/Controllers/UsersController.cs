@@ -70,12 +70,16 @@ namespace ItAcademy.Controllers
             //    return View();
             //}
 
-            var user = await _userManager.FindByNameAsync(resetPasswordVM.Username);
+            //AppUser user = await _userManager.FindByNameAsync(resetPasswordVM.Name);
+            AppUser user = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == id);
             if (user == null)
             {
                 return BadRequest();
             }
-            var result = await _userManager.ResetPasswordAsync(user, resetPasswordVM.OldPassword, resetPasswordVM.Password);
+            //var result = await _userManager.ChangePasswordAsync(user, resetPasswordVM.OldPassword, resetPasswordVM.Password);
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var result = await _userManager.ResetPasswordAsync(user, token, resetPasswordVM.Password);
+
             if (!result.Succeeded)
             {
                 foreach (var error in result.Errors)
@@ -86,7 +90,7 @@ namespace ItAcademy.Controllers
                 return View();
             }
 
-            return RedirectToAction("Index", "Dashboard");
+            return RedirectToAction(nameof(Index), "Dashboard");
         }
         #endregion
         #region Create
