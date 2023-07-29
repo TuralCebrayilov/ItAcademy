@@ -11,99 +11,69 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-striped" id="example">
+
+                <table id="myBoss" class="display nowrap" style="width:100%">
                     <thead>
                         <tr>
-
-                            <th>
-                                Kurs
-                            </th>
-
-                            <th>
-                                Qiymət
-                            </th>
-
-                            <th>
-                                Müddət
-                            </th>
-                            <th>
-                                Status
-                            </th>
+                            <th>Kurs</th>
+                            <th>Müddət</th>
+                            <th>Qiymət</th>
+                            <th>Status</th>
+                            <th>Əmrlər</th>
+                           
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                        @foreach (Courses item in Model)
                         {
                             <tr>
-
-                                <td>
-                                    @item.Name
-                                </td>
-                                <td>
-                                    @item.Mark
-                                </td>
-                                <td>
-                                    @item.CoursesDuration
-                                </td>
-
+                                
+                                <td>@item.Name</td>
+                                <td>@item.CoursesDuration</td>
+                                <td>@item.Mark</td>
                                 <td>
                                     @if (item.IsDeactive)
                                     {
-                                        <span style="padding:2px 3px; background-color:red;color:white">Passiv</span>
+                                        <span style="padding:1px 2px; background-color:red;color:white">İşləmir</span>
                                     }
                                     else
                                     {
-                                        <span style="padding:2px 3px; background-color:green;color:white">Active</span>
+                                        <span style="padding:1px 2px; background-color:green;color:white">İşləyir</span>
                                     }
                                 </td>
                                 <td>
-                                    <div style="display:flex;justify-content:flex-end">
+                                    <div @*style="display:flex;justify-content:flex-end"*@>
 
-                                        <a class="btn btn-info text-white rounded-pill" style="margin-right:5px" asp-action="Update" asp-route-id="@item.Id">Dəyiş</a>
+                                        <a class="btn btn-info text-white rounded-pill" style="margin-right:10px" asp-action="Update" asp-route-id="@item.Id">Dəyiş</a>
                                         @if (item.IsDeactive)
                                         {
-                                            <a class="btn btn-success text-white rounded-pill" style="margin-right:5px;/*width:118px*/" asp-action="Activity" asp-route-id="@item.Id">Active</a>
+                                            <a class="btn btn-success text-white rounded-pill" style="margin-right:30px;width:100px" asp-action="Activity" asp-route-id="@item.Id">İşləyir</a>
 
                                         }
                                         else
                                         {
-                                            <a class="btn btn-danger text-white rounded-pill" style="margin-right:5px;/*width:118px*/" asp-action="Activity" asp-route-id="@item.Id">Passiv</a>
+                                            <a class="btn btn-danger text-white rounded-pill" style="margin-right:30px;width:100px" asp-action="Activity" asp-route-id="@item.Id">işləmir</a>
 
                                         }
                                     </div>
-
                                 </td>
-                                @*   <td>
-                            <a class="btn btn-warning text-white rounded-pill" style="margin-right:10px" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                            </td>*@
-
                             </tr>
-
-
                         }
 
                     </tbody>
+
                 </table>
+            
             </div>
         </div>
     </div>
 </div>
 @section Css{
-
-    @* <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />*@
-    @*<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css
-" />*@
-
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css" />
 }
+
 @section Scripts{
-    @* <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>*@
-
-    @*  <script>
-        let table = new DataTable('#Cost1');</script>*@
-
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
@@ -113,16 +83,17 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
 
-
+    <!-- DataTable yalnız bir dəfə yaradıldığından əmin olmaq üçün əlavə şərt -->
     <script>
         $(document).ready(function () {
-            $('#example').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
-            });
+            if (!$.fn.DataTable.isDataTable('#myBoss')) {
+                $('#myBoss').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+            }
         });
-
     </script>
 }

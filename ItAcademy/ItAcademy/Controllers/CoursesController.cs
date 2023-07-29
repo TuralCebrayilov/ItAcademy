@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace ItAcademy.Controllers
         }
         public async Task<IActionResult> Index()
         {
+          
             List<Courses> courses = await _Db.Courses.OrderByDescending(x => x.Id).ToListAsync();
 
             return View(courses);

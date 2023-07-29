@@ -14,7 +14,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive text-nowrap">
-            <table class="table table-bordered" id="example">
+            <table class="table table-bordered" id="myBene">
                @* <thead>
                     <tr>
                         <th>Miqdar</th>
@@ -30,7 +30,7 @@
                         <th>Məlumat</th>
                         <th>Tarix</th>
                         <th>Kim Tərəfindən</th>
-                        <th></th>
+                      
                     </tr>
                 </thead>
                 <tbody>
@@ -41,11 +41,7 @@
                             <td>@item.Description</td>
                             <td>@item.CreateTime</td>
                             <td>@item.By</td>
-                            <td>
-                                <div style="display:flex;justify-content:flex-end">
-                                    <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-info text-white" style="margin-right:10px"><i class="fa-solid fa-pen"></i></a>
-                                </div>
-                            </td>
+                          
                         </tr>
                     }
                 </tbody>
@@ -55,21 +51,11 @@
     </div>
 </div>
 @section Css{
-
-    @* <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />*@
-    @*<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css
-" />*@
-
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css" />
 }
+
 @section Scripts{
-    @* <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>*@
-
-    @*  <script>
-        let table = new DataTable('#Cost1');</script>*@
-
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
@@ -79,17 +65,18 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
 
-
+    <!-- DataTable yalnız bir dəfə yaradıldığından əmin olmaq üçün əlavə şərt -->
     <script>
         $(document).ready(function () {
-            $('#example').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
-            });
+            if (!$.fn.DataTable.isDataTable('#myBene')) {
+                $('#myBene').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+            }
         });
-
     </script>
 }
 <!--/ Bordered Table -->

@@ -29,6 +29,7 @@ namespace ItAcademy.Controllers
             List<Employers> employers = await _Db.Employers.Include(x => x.Positions).OrderByDescending(x => x.Id).ToListAsync();
             return View(employers);
         }
+       
         #region create
         public async Task<IActionResult> Create()
         {

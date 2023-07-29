@@ -24,19 +24,7 @@ namespace ItAcademy.Controllers
         {
             List<Benefit> benefits= await _Db.Benefits.OrderByDescending(x => x.Id).ToListAsync();
             
-            /*List<Benefit> benefits = new List<Benefit>();*/
-            //if (!string.IsNullOrEmpty(Search))
-            //{
-            //    var benefitDb = from b in _Db.Benefits select d;
-            //    benefits = await _Db.Benefits.Where(x => x.Description.Contains(search)).OrderByDescending(x => x.Id).ToListAsync();
-            //    return View(benefits);
-            //}
-
-            //decimal take = 4;
-            //ViewBag.PageCount = Math.Ceiling((decimal)(await _Db.Benefits.CountAsync() / take));
-            //ViewBag.Currentpage = page;
-            //benefits = await _Db.Benefits.OrderByDescending(x => x.Id).Skip((page - 1) * 4).Take((int)take).ToListAsync();
-
+           
 
 
             return View(benefits);

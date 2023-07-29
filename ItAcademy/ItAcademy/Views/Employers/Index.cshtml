@@ -11,109 +11,75 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-striped" id="example">
+         
+                <table id="myTable" class="display nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th>
-                                Şəkil
-                            </th>
-                            <th>
-                                Ad
-                            </th>
-                            <th>
-                                Doğum Tarixi
-                            </th>
-                            <th>
-                                Maaş
-                            </th>
-                            <th>
-                                Mobil
-                            </th>
-                            <th>
-                                Vəzifə
-                            </th>
-                            <th>
-                                Status
-                            </th>
+                            
+                            <th>Şəkil</th>
+                            <th>Ad Soyad</th>
+                            <th>Doğum Tarixi</th>
+                            <th>Maaş</th>
+                            <th>Mobil</th>
+                            <th>Vəzifə</th>
+                            <th>Status</th>
+                            <th>Əmrlər</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                        @foreach (Employers item in Model)
                         {
                             <tr>
-                                <td class="py-1">
-                                    <img src="~/~/../../images/@item.Image" alt="image" />
-                                </td>
-                                <td>
-                                    @item.Name
-                                </td>
-                                <td>
-                                    @item.Birthday?.ToShortDateString()
-                                </td>
-                                <td>
-                                    @item.Salary
-                                </td>
-                               
-                                <td>
-                                    @item.PhoneNumber
-                                </td>
-                                <td>
-                                    @item.Positions.Name
-                                </td>
+                                <td>  <img src="~/../../images/@item.Image" alt="image" style="width:100px ;height:100px; border-radius:100px" /></td>
+                                <td>@item.Name</td>
+                                <td>@item.Birthday?.ToShortDateString()</td>
+                                <td>@item.Salary</td>
+                                <td>@item.PhoneNumber</td>
+                                <td>@item.Positions.Name</td>
                                 <td>
                                     @if (item.IsDeactive)
                                     {
-                                        <span style="padding:4px 6px; background-color:red;color:white">İşləmir</span>
+                                        <span style="padding:1px 2px; background-color:red;color:white">İşləmir</span>
                                     }
                                     else
                                     {
-                                        <span style="padding:4px 6px; background-color:green;color:white">İşləyir</span>
+                                        <span style="padding:1px 2px; background-color:green;color:white">İşləyir</span>
                                     }
                                 </td>
                                 <td>
-                                    <div style="display:flex;justify-content:flex-end">
-                                        <a class="btn btn-warning text-white rounded-pill" style="margin-right:10px" asp-action="Detail" asp-route-id="@item.Id">Detail</a>
+                                    <div @*style="display:flex;justify-content:flex-end"*@>
+        
                                         <a class="btn btn-info text-white rounded-pill" style="margin-right:10px" asp-action="Update" asp-route-id="@item.Id">Dəyiş</a>
                                         @if (item.IsDeactive)
                                         {
-                                            <a class="btn btn-success text-white rounded-pill" style="margin-right:10px;width:118px" asp-action="Activity" asp-route-id="@item.Id">İşləyir</a>
+                                            <a class="btn btn-success text-white rounded-pill" style="margin-right:30px;width:100px" asp-action="Activity" asp-route-id="@item.Id">İşləyir</a>
 
                                         }
                                         else
                                         {
-                                            <a class="btn btn-danger text-white rounded-pill" style="margin-right:10px;width:118px" asp-action="Activity" asp-route-id="@item.Id">işləmir</a>
+                                            <a class="btn btn-danger text-white rounded-pill" style="margin-right:30px;width:100px" asp-action="Activity" asp-route-id="@item.Id">işləmir</a>
 
                                         }
                                     </div>
-
                                 </td>
                             </tr>
-
-
                         }
 
                     </tbody>
+
                 </table>
+             
             </div>
         </div>
     </div>
 </div>
+
 @section Css{
-
-    @* <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />*@
-    @*<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css
-" />*@
-
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css" />
 }
+
 @section Scripts{
-    @* <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>*@
-
-    @*  <script>
-        let table = new DataTable('#Cost1');</script>*@
-
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
@@ -123,16 +89,17 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
 
-
+    <!-- DataTable yalnız bir dəfə yaradıldığından əmin olmaq üçün əlavə şərt -->
     <script>
         $(document).ready(function () {
-            $('#example').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
-            });
+            if (!$.fn.DataTable.isDataTable('#myTable')) {
+                $('#myTable').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+            }
         });
-
     </script>
 }

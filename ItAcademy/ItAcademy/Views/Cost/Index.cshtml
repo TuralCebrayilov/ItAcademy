@@ -4,16 +4,16 @@
 <!-- Bordered Table -->
 <div class="card">
     <div class="card-header" style="display:flex;justify-content:space-between">
-        <h3>
+        <h5>
             Xərclər
-        </h3>
+        </h5>
         <div>
             <a asp-action="Create" class="btn btn-danger text-white rounded-pill" style="margin-right:10px">Əlavə Et</a>
         </div>
     </div>
     <div class="card-body">
         <div class="table-responsive text-nowrap">
-            <table id="example" class="table table-bordered">
+            <table id="myCost" class="table table-bordered">
                @* <thead>
                     <tr>
                         <th>Miqdar</th>
@@ -28,10 +28,9 @@
                 <thead>
                     <tr>
                         <th>Miqdar</th>
-                        <th>Təsvir</th>
+                        <th>Məlumat</th>
                         <th>Tarix</th>
                         <th>Kim tərəfdən</th>
-                        <th></th>
                        
                     </tr>
                 </thead>
@@ -39,15 +38,11 @@
                     @foreach (Cost item in Model)
                     {
                         <tr>
-                            <td>@item.Amount AZN</td>
+                            <td>- @item.Amount AZN</td>
                             <td>@item.Description</td>
                             <td>@item.CreateTime</td>
                             <td>@item.By</td>
-                            <td>
-                                @* <div style="display:flex;justify-content:flex-end">
-                            <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-info text-white" style="margin-right:10px"><i class="fa-solid fa-pen"></i></a>
-                            </div>*@
-                            </td>
+                          
                         </tr>
                     }
                 </tbody>
@@ -75,19 +70,11 @@
 </div>
 @section Css{
 
-    @* <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />*@
-    @*<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css
-" />*@
-
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css" />
 }
 @section Scripts{
-    @* <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>*@
-
-    @*  <script>
-        let table = new DataTable('#Cost1');</script>*@
+   
 
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
@@ -101,12 +88,14 @@
 
     <script>
         $(document).ready(function () {
-            $('#example').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
-            });
+            if (!$.fn.DataTable.isDataTable('#myCost')) {
+                $('#myCost').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+            }
         });
 
     </script>
