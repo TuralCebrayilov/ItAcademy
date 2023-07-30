@@ -148,6 +148,11 @@ namespace ItAcademy.Controllers
             return RedirectToAction("Index");
         }
         #endregion
+        public async Task<IActionResult> Detail()
+        {
+            List<Employers> employers = await _Db.Employers.Include(x => x.Positions).OrderByDescending(x => x.Id).ToListAsync();
+            return View(employers);
+        }
         #region Activity
         public async Task<IActionResult> Activity(int? id)
         {

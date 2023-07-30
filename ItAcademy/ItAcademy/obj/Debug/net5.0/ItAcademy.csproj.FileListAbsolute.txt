@@ -336,3 +336,8 @@ C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Vie
 C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Views\Cost\Create.cshtml.g.cs
 C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Views\Cost\Index.cshtml.g.cs
 C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Views\Users\ResertPassword.cshtml.g.cs
+C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Views\Student\Detail.cshtml.g.cs
+C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Views\Teachers\Detail.cshtml.g.cs
+C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Views\Employers\Detail.cshtml.g.cs
+C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Views\Student\SendStudentSms.cshtml.g.cs
+C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Views\Student\SendAllStudentSms.cshtml.g.cs

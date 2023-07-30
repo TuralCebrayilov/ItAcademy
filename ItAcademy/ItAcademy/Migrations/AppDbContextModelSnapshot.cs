@@ -312,6 +312,10 @@ namespace ItAcademy.Migrations
                     b.Property<int>("CoursesId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -319,8 +323,7 @@ namespace ItAcademy.Migrations
                     b.Property<bool>("IsDeactive")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("Mobil")
-                        .IsRequired()
+                    b.Property<int>("Mobil")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")

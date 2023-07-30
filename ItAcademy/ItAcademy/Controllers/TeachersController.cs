@@ -146,6 +146,11 @@ namespace ItAcademy.Controllers
             return RedirectToAction("Index");
         }
         #endregion
+        public async Task<IActionResult> Detail()
+        {
+            List<Teachers> teachers = await _Db.Teachers.Include(x => x.Courses).OrderByDescending(x => x.Id).ToListAsync();
+            return View(teachers);
+        }
         #region Activity
         public async Task<IActionResult> Activity(int? id)
         {

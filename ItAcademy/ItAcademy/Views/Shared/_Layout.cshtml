@@ -457,7 +457,24 @@
     <!-- Custom js for this page-->
     <script src="~/js/dashboard.js"></script>
     <script src="~/js/Chart.roundedBarCharts.js"></script>
-    
+    <script>
+
+        $(document).on("click", "#subBtn", function () {
+            $("#ErorrMes").empty()
+            $.ajax({
+                url: "/Home/Subscribe/",
+                type: "get",
+                data: {
+                    "email": $("#subBtn").prev().val()
+                },
+                success: function (res) {
+                    $("#ErorrMes").append(res)
+
+                }
+            });
+        });
+    </script>
+
     <!-- End custom js for this page-->
 </body>
 

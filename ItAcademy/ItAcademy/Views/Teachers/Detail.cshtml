@@ -1,0 +1,90 @@
+﻿@model List<Teachers>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-header" style="display:flex;justify-content:space-between">
+               
+                <div>
+                    <a asp-action="Index" class="btn btn-danger text-white rounded-pill" style="margin-right:10px">GERİ</a>
+                </div>
+            </div>
+            <div class="table-responsive">
+
+                <table id="myTeach" class="display nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+
+                            <th>Şəkil</th>
+                            <th>Ad Soyad</th>
+                            <th>Doğum Tarixi</th>
+                            <th>Maaş</th>
+                            <th>Mobil</th>
+                            <th>İxtisas</th>
+                            <th>İşləyir?</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Teachers item in Model)
+                        {
+                            <tr>
+                                <td>  <img src="~/../../images/@item.Image" alt="image" style="width:100px ;height:100px; border-radius:100px" /></td>
+                                <td>@item.Name</td>
+                                <td>@item.Birthday?.ToShortDateString()</td>
+                                <td>@item.Salary AZN</td>
+                                <td>@item.PhoneNumber</td>
+                                <td>@item.Courses.Name</td>
+                                <td>
+                                    @if (item.IsDeactive)
+                                    {
+                                        <span style="padding:1px 2px; background-color:red;color:white">İşləmir</span>
+                                    }
+                                    else
+                                    {
+                                        <span style="padding:1px 2px; background-color:green;color:white">İşləyir</span>
+                                    }
+                                </td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Css{
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css" />
+}
+
+@section Scripts{
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+
+    <!-- DataTable yalnız bir dəfə yaradıldığından əmin olmaq üçün əlavə şərt -->
+    <script>
+        $(document).ready(function () {
+            if (!$.fn.DataTable.isDataTable('#myTeach')) {
+                $('#myTeach').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+            }
+        });
+    </script>
+}

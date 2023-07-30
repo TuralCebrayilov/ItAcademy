@@ -7,37 +7,39 @@
 
             </div>
             <div class="card-body">
-                <form>
-                <div class="mb-3 form-group">
-                    <label asp-for="Photo" class="form-label">Şəkil</label>
-                    <input asp-for="Photo" accept="image/*" class="form-control" />
-                    <span asp-validation-for="Photo" class="text-danger"></span>
-                </div>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="mb-3 form-group">
+                        <label asp-for="Photo" class="form-label">Şəkil</label>
+                        <input asp-for="Photo" accept="image/*" class="form-control" />
+                        <span asp-validation-for="Photo" class="text-danger"></span>
+                    </div>
 
-                <div class="mb-3 form-group">
-                    <label asp-for="Name" class="form-label">Ad</label>
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="mb-3 form-group">
-                    <label asp-for="Birthday" class="form-label">Doğum Tarixi</label>
-                    <input type="date" asp-for="Birthday" class="form-control" />
-                    <span asp-validation-for="Birthday" class="text-danger"></span>
+                    <div class="mb-3 form-group">
+                        <label asp-for="Name" class="form-label">Ad</label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
 
-                </div>
-                <div class="mb-3 form-group">
-                    <label asp-for="Mobil" class="form-label">Mobil</label>
-                    <input asp-for="Mobil" class="form-control" />
-                    <span asp-validation-for="Mobil" class="text-danger"></span>
-                </div>
+                    <div class="mb-3 form-group">
+                        <label asp-for="Mobil" class="form-label">Mobil</label>
+                        <input type="tel" asp-for="Mobil" class="form-control" />
+                        <span asp-validation-for="Mobil" class="text-danger"></span>
+                    </div>
 
 
-                <div class="mb-3 form-group">
-                    <label asp-for="Payment" class="form-label">Maaş</label>
-                    <input asp-for="Payment" class="form-control" />
-                    <span asp-validation-for="Payment" class="text-danger"></span>
+                    <div class="mb-3 form-group">
+                        <label asp-for="Payment" class="form-label">Ödəniş</label>
+                        <input asp-for="Payment" class="form-control" />
+                        <span asp-validation-for="Payment" class="text-danger"></span>
 
-                </div>
+                    </div>
+                    <div class="mb-3 form-group">
+                        <label asp-for="Birthday" class="form-label">Doğum Tarixi</label>
+                        <input type="date" asp-for="Birthday" class="form-control" />
+                        <span asp-validation-for="Birthday" class="text-danger"></span>
+
+                    </div>
+
 
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Kurs</label>
@@ -57,27 +59,29 @@
 
 
                         </select>
-                </div>
-               
-              @*  <div class="form-group">
-                    <label for="exampleFormControlSelect1">Qrup</label>
-                    <select class="form-control" name="CatId">
-                        @foreach (Groups var in ViewBag.Groups)
-                        {
-                            if (Model.GroupsId == var.Id)
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Qrup</label>
+                        <select class="form-control" name="GatId">
+                            @foreach (Groups var in ViewBag.Groups)
                             {
-                                <option selected value="@var.Id">@var.Name</option>
+                                if (Model.GroupStudent.Any(x => x.GroupsId == var.Id))
+                                {
+                                    <option selected value="@var.Id">@var.Name</option>
+                                }
+                                else
+                                {
+                                    <option  value="@var.Id">@var.Name</option>
+                                }
+
+                               
                             }
-                            else
-                            {
-                                <option value="@var.Id">@var.Name</option>
-
-                            }
-                        }
 
 
-                    </select>
-                </div>*@
+                        </select>
+                    </div>
 
 
 

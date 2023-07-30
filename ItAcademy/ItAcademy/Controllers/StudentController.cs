@@ -35,7 +35,7 @@ namespace ItAcademy.Controllers
                 .ThenInclude(sg => sg.Groups)
             .Include(s => s.Courses).OrderByDescending(x => x.Id)
             .ToListAsync();
-
+            ViewBag.GroupStudent = await _Db.GroupStudent.ToListAsync();
             return View(students);
         }
         #region create
@@ -121,6 +121,7 @@ namespace ItAcademy.Controllers
             }
             ViewBag.Courses = await _Db.Courses.ToListAsync();
             ViewBag.GroupStudent = await _Db.GroupStudent.ToListAsync();
+            ViewBag.Groups = await _Db.Groups.ToListAsync();
             return View(_DbStudents);
         }
         [HttpPost]
@@ -136,8 +137,18 @@ namespace ItAcademy.Controllers
             {
                 return BadRequest();
             }
+
+            GroupStudent groupStudent = await _Db.GroupStudent.Where(x=> x.StudentsId == id).FirstOrDefaultAsync();
+            if (groupStudent == null)
+            {
+                return BadRequest();
+            }
+
             ViewBag.Courses = await _Db.Courses.ToListAsync();
             ViewBag.GroupStudent = await _Db.GroupStudent.ToListAsync();
+            ViewBag.Groups = await _Db.Groups.ToListAsync();
+
+
             //#region Exist Item
             //bool isExist = await _Db.Teachers.AnyAsync(x => x.Name == teachers.Name && CatId != id);
             //if (isExist)
@@ -167,20 +178,38 @@ namespace ItAcademy.Controllers
             }
 
             #endregion
+            //var GroupStudent = new List<GroupStudent>();
+            //var groupStudent = new GroupStudent
+            //{
+            //    StudentsId = students.Id,
+            //    GroupsId = GatId
+            //};
+            //GroupStudent.Add(groupStudent);
             _DbStudents.Name = students.Name;
             _DbStudents.Payment = students.Payment;
             _DbStudents.Birthday = students.Birthday;
             _DbStudents.Mobil = students.Mobil;
-          
-           
-            //_DbStudents.StudentGroups = GatId;
+            groupStudent.GroupsId = GatId;
+
+            //_DbStudents.GroupStudent. = GatId;
             _DbStudents.CoursesId = CatId;
+            
             //students.GroupStudentId = GatId;
 
             await _Db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
         #endregion
+        public async Task<IActionResult> Detail(int id)
+        {
+            var students = await _Db.Students
+           .Include(s => s.GroupStudent)
+               .ThenInclude(sg => sg.Groups)
+           .Include(s => s.Courses).OrderByDescending(x => x.Id)
+           .ToListAsync();
+
+            return View(students);
+        }
         #region Activity
         public async Task<IActionResult> Activity(int? id)
         {
@@ -205,5 +234,44 @@ namespace ItAcademy.Controllers
             return RedirectToAction("Index");
         }
         #endregion
+
+        public async Task<IActionResult> SendStudentSms(int id)
+        {
+            var student = _Db.Students.Where(x=> x.Id == id).FirstOrDefaultAsync();
+
+            return View(student);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SendStudentSms(int id, string subject, string text)
+        {
+            var student = _Db.Students.Where(x => x.Id == id).FirstOrDefaultAsync();
+            var email = student.Result.Email;
+            await Sms.SendMailAsync(subject, text, email);
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> SendAllStudentSms()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SendAllStudentSms(string subject, string text)
+        {
+            List<Students> students = await _Db.Students.ToListAsync();
+
+            foreach (var student in students)
+            {
+                await Sms.SendMailAsync(subject, text, student.Email);
+            }
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

@@ -30,6 +30,7 @@ namespace ItAcademy.Models
         public IFormFile Photo { get; set; }
         public Positions Positions { get; set; }
         public int PositionsId { get; set; }
+       
 
     }
 }
