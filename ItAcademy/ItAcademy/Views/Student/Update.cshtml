@@ -19,9 +19,14 @@
                         <input asp-for="Name" class="form-control" />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
+                    <div class="mb-3 form-group">
+                        <label asp-for="Email" class="form-label">Ad</label>
+                        <input type="email" asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
 
                     <div class="mb-3 form-group">
-                        <label asp-for="Mobil" class="form-label">Mobil</label>
+                        <label asp-for="Mobil" class="form-label">Mobil *((994) 70-301-23-94)</label>
                         <input type="tel" asp-for="Mobil" class="form-control" />
                         <span asp-validation-for="Mobil" class="text-danger"></span>
                     </div>

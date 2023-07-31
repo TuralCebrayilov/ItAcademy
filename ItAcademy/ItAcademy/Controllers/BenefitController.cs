@@ -1,5 +1,7 @@
 ﻿using ItAcademy.DAL;
+using ItAcademy.Helper;
 using ItAcademy.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace ItAcademy.Controllers
 {
+    [Authorize(Roles = "Member,Admin")]
     public class BenefitController : Controller
     {
         private readonly AppDbContext _Db;

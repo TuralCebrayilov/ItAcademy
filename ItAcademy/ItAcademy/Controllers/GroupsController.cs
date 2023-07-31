@@ -13,7 +13,8 @@ using System.Threading.Tasks;
 
 namespace ItAcademy.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Member,Admin")]
+
     public class GroupsController : Controller
     {
 
@@ -31,6 +32,7 @@ namespace ItAcademy.Controllers
         public async Task<IActionResult> Index()
         {
             List<Groups> groups = await _Db.Groups.Include(x => x.Courses).OrderByDescending(x => x.Id).ToListAsync();
+
             return View(groups);
         }
         #region create

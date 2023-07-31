@@ -18,6 +18,7 @@
 
                             <th>Ad</th>
                             <th>Kurs</th>
+                           
                             <th>Status</th>
                             <th>Əmrlər</th>
                         </tr>
@@ -26,9 +27,11 @@
                         @foreach (Groups item in Model)
                         {
                             <tr>
-                               
+
                                 <td>@item.Name</td>
                                 <td>@item.Courses.Name</td>
+                               
+
                                 <td>
                                     @if (item.IsDeactive)
                                     {

@@ -13,7 +13,8 @@ using System.Threading.Tasks;
 
 namespace ItAcademy.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Member,Admin")]
+
     public class StudentController : Controller
     {
         private readonly AppDbContext _Db;
@@ -36,6 +37,7 @@ namespace ItAcademy.Controllers
             .Include(s => s.Courses).OrderByDescending(x => x.Id)
             .ToListAsync();
             ViewBag.GroupStudent = await _Db.GroupStudent.ToListAsync();
+          
             return View(students);
         }
         #region create

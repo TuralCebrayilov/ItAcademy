@@ -21,6 +21,7 @@
                             <th>Doğum Tarixi</th>
                             <th>Maaş</th>
                             <th>Mobil</th>
+                            <th>Email</th>
                             <th>Vəzifə</th>
                             <th>Status</th>
                            
@@ -35,6 +36,8 @@
                                 <td>@item.Birthday?.ToShortDateString()</td>
                                 <td>@item.Salary AZN</td>
                                 <td>@item.PhoneNumber</td>
+                                <td>@item.Email</td>
+                                
                                 <td>@item.Positions.Name</td>
                                 <td>
                                     @if (item.IsDeactive)

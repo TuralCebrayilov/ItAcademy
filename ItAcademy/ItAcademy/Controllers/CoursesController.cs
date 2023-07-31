@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ItAcademy.Controllers
 {
-    
+    [Authorize(Roles = "Member,Admin")]
     public class CoursesController : Controller
     {
         private readonly AppDbContext _Db;

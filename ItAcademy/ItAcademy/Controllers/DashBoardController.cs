@@ -1,7 +1,9 @@
-﻿using ItAcademy.Helper;
+﻿using ItAcademy.DAL;
+using ItAcademy.Helper;
 using ItAcademy.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -11,14 +13,20 @@ using System.Threading.Tasks;
 
 namespace ItAcademy.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Member,Admin")]
     public class DashBoardController : Controller
     {
-      
-
-        public IActionResult Index()
+        private readonly AppDbContext _Db;
+        public DashBoardController(AppDbContext Db)
         {
-            return View();
+                _Db = Db;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            List<Courses> courses = await  _Db.Courses.OrderByDescending(x => x.Id).ToListAsync();
+
+            return View(courses);
         }
 
        

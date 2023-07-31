@@ -12,7 +12,8 @@ using System.Threading.Tasks;
 
 namespace ItAcademy.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Member,Admin")]
+
     public class TeachersController : Controller
     {
         private readonly AppDbContext _Db;
@@ -175,6 +176,43 @@ namespace ItAcademy.Controllers
             return RedirectToAction("Index");
         }
         #endregion
-      
+        public async Task<IActionResult> SendTeachersSms(int id)
+        {
+            var teachers = _Db.Teachers.Where(x => x.Id == id).FirstOrDefaultAsync();
+
+            return View(teachers);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SendTeachersSms(int id, string subject, string text)
+        {
+            var teachers = _Db.Teachers.Where(x => x.Id == id).FirstOrDefaultAsync();
+            var email = teachers.Result.Email;
+            await Sms.SendMailAsync(subject, text, email);
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> SendAllTeachersSms()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SendAllTeachersSms(string subject, string text)
+        {
+            List<Teachers> teachers = await _Db.Teachers.ToListAsync();
+
+            foreach (var teacher in teachers)
+            {
+                await Sms.SendMailAsync(subject, text, teacher.Email);
+            }
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

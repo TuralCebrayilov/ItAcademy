@@ -341,3 +341,7 @@ C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Vie
 C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Views\Employers\Detail.cshtml.g.cs
 C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Views\Student\SendStudentSms.cshtml.g.cs
 C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Views\Student\SendAllStudentSms.cshtml.g.cs
+C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Views\Employers\SendEmployersSms.cshtml.g.cs
+C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Views\Employers\SendAllEmployersSms.cshtml.g.cs
+C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Views\Teachers\SendTeachersSms.cshtml.g.cs
+C:\Users\HP\Desktop\GIT\ItAcademy\ItAcademy\ItAcademy\obj\Debug\net5.0\Razor\Views\Teachers\SendAllTeachersSms.cshtml.g.cs

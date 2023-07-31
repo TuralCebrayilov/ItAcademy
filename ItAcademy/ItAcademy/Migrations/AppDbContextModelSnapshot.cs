@@ -205,6 +205,10 @@ namespace ItAcademy.Migrations
                         .IsRequired()
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -353,6 +357,10 @@ namespace ItAcademy.Migrations
 
                     b.Property<int>("CoursesId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
                         .IsRequired()

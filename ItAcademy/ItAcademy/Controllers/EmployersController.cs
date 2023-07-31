@@ -13,7 +13,8 @@ using System.Threading.Tasks;
 
 namespace ItAcademy.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Member,Admin")]
+
     public class EmployersController : Controller
     {
         private readonly AppDbContext _Db;
@@ -177,5 +178,42 @@ namespace ItAcademy.Controllers
             return RedirectToAction("Index");
         }
         #endregion
+        public async Task<IActionResult> SendEmployersSms(int id)
+        {
+            var employers = _Db.Employers.Where(x => x.Id == id).FirstOrDefaultAsync();
+
+            return View(employers);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SendEmployersSms(int id, string subject, string text)
+        {
+            var employers = _Db.Employers.Where(x => x.Id == id).FirstOrDefaultAsync();
+            var email = employers.Result.Email;
+            await Sms.SendMailAsync(subject, text, email);
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> SendAllEmployersSms()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SendAllEmployersSms(string subject, string text)
+        {
+            List<Employers> employers = await _Db.Employers.ToListAsync();
+
+            foreach (var employer in employers)
+            {
+                await Sms.SendMailAsync(subject, text, employer.Email);
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }

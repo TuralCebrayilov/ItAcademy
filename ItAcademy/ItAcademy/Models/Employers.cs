@@ -10,6 +10,9 @@ namespace ItAcademy.Models
         public int Id { get; set; }
         [Required(ErrorMessage = "Bu xana boş ola bilməz!")]
         public string Name { get; set; }
+        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "Bu xana boş ola bilməz!")]
+        public string Email { get; set; }
         [Required(ErrorMessage = "Bu xana boş ola bilməz!")]
         public string Image { get; set; }
         [Required(ErrorMessage = "Bu xana boş ola bilməz!")]

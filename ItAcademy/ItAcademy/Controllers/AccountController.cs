@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace ItAcademy.Controllers
 {
-    
+   
+ 
     public class AccountController : Controller
     {
         private readonly UserManager<AppUser> _userManager;

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ItAcademy.Controllers
 {
-    
+    [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -247,5 +247,8 @@ namespace ItAcademy.Controllers
             return RedirectToAction("Index");
         }
         #endregion
+      
+
+       
     }
 }

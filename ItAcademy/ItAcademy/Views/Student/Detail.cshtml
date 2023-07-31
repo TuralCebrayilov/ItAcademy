@@ -20,9 +20,10 @@
                             <th>Ad Soyad</th>
                             <th>Doğum Tarixi</th>
                             <th>Ödəniş</th>
-                           
+                            <th>Email</th>                           
                             <th>Mobil</th>
                             <th>Kurs</th>
+                            <th>Qrup</th>
                             <th>Təhsil Alır?</th>
                            
                         </tr>
@@ -35,6 +36,7 @@
                                 <td>@item.Name</td>
                                 <td>@item.Birthday?.ToShortDateString()</td>
                                 <td>@item.Payment AZN</td>
+                                <td>@item.Email</td>
                                @* <td>
                                     @foreach (GroupStudent var in ViewBag.GroupStudent)
                                     {
@@ -43,6 +45,13 @@
                                 </td>*@
                                 <td>@item.Mobil</td>
                                 <td>@item.Courses.Name</td>
+                                <td>
+                                    @foreach (GroupStudent GroupStudent in item.GroupStudent)
+                                    {
+                                        <div>@GroupStudent.Groups.Name</div>
+
+                                    }
+                                </td>
                                
                                 <td>
                                     @if (item.IsDeactive)

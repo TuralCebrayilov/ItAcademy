@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace ItAcademy.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Member,Admin")]
+    
     public class PositionsController : Controller
     {
         private readonly AppDbContext _Db;
